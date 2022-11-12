@@ -1,44 +1,51 @@
 package net.pl3x.servergui.test;
 
+import net.pl3x.servergui.api.gui.element.Image;
+import net.pl3x.servergui.api.gui.element.Text;
 import net.pl3x.servergui.plugin.event.HelloEvent;
+import net.pl3x.servergui.plugin.network.packet.ElementPacket;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 
 public class PlayerListener implements Listener {
-    private final ServerGUITest plugin;
-
-    public PlayerListener(ServerGUITest plugin) {
-        this.plugin = plugin;
-    }
-
-    // send our own Gui list manually to the player when they join.
-    // we use the HelloEvent instead of the PlayerJoinEvent here because
-    // the join event fires too soon in the connection state and is not
-    // able to properly send things to the client. the hello event will
-    // only fire once the client is ready to send _and_ receive data.
     @EventHandler
-    public void onJoin(HelloEvent event) {
+    public void onHello(HelloEvent event) {
         Player player = event.getPlayer();
-        this.plugin.getGuiManager()
-            .getHud(player.getUniqueId())
-            .update(player, player.getLocation());
-    }
 
-    @EventHandler
-    public void onQuit(PlayerQuitEvent event) {
-        this.plugin.getGuiManager().removeHud(event.getPlayer().getUniqueId());
+        updateCoordsHUD(player, player.getLocation());
+
+        // test stuff
+        ElementPacket.send(player, Image.builder("test:hayley")
+            .setSize(120, 150)
+            .setPos(0, 20)
+            .build());
+        ElementPacket.send(player, Text.builder("test:crosshair")
+            .setText("O")
+            .setAnchor(0.5F, 0.5F)
+            .setOffset(0.5F, 0.5F)
+            .setShadow(false)
+            .build());
+        ElementPacket.send(player, Text.builder("test:footnote")
+            .setText("bottom right")
+            .setAnchor(1, 1)
+            .setOffset(1, 1)
+            .build());
     }
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
         if (event.hasChangedBlock()) {
-            Player player = event.getPlayer();
-            this.plugin.getGuiManager()
-                .getHud(player.getUniqueId())
-                .update(player, event.getTo());
+            updateCoordsHUD(event.getPlayer(), event.getTo());
         }
+    }
+
+    private void updateCoordsHUD(Player player, Location loc) {
+        Text coords = Text.builder("test:coords")
+            .setText(loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ())
+            .build();
+        new ElementPacket().send(player, coords);
     }
 }

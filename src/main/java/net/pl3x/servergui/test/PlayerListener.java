@@ -17,7 +17,7 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
 
-        updateCoordsHUD(player, player.getLocation());
+        updateCoordsHUD(uuid, player.getLocation());
 
         // test stuff
         Image.builder("test:hayley")
@@ -43,15 +43,15 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
         if (event.hasChangedBlock()) {
-            updateCoordsHUD(event.getPlayer(), event.getTo());
+            updateCoordsHUD(event.getPlayer().getUniqueId(), event.getTo());
         }
     }
 
-    private void updateCoordsHUD(Player player, Location loc) {
+    private void updateCoordsHUD(UUID uuid, Location loc) {
         String coords = loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ();
         Text.builder("test:coords")
             .setText(coords)
             .build()
-            .send(player.getUniqueId());
+            .send(uuid);
     }
 }

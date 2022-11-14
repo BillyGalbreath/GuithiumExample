@@ -27,7 +27,9 @@ public class ScreenCommand implements TabExecutor {
         }
 
         // create a new screen
-        Screen screen = Screen.builder("test:screen").build();
+        Screen screen = Screen.builder("test:screen")
+            .setBackground(Screen.Background.TEXTURE)
+            .build();
 
         // populate screen with elements
         screen.addElements(List.of(

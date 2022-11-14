@@ -6,3 +6,8 @@ description: "${description}"
 author: "BillyGalbreath"
 depend:
   - ServerGUI
+
+commands:
+  screen:
+    description: Open the test screen
+    permission: servergui.command.screen

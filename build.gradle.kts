@@ -2,9 +2,9 @@ plugins {
     `java-library`
 }
 
-group = "net.pl3x.servergui.test"
+group = "net.pl3x.guithium.test"
 version = "1.0"
-description = "ServerGUI Test Plugin"
+description = "Guithium Example Plugin"
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT")
-    compileOnly("net.pl3x.servergui:servergui:1.19.2-SNAPSHOT")
+    compileOnly("net.pl3x.guithium:guithium:1.19.2-SNAPSHOT")
 }
 
 tasks {

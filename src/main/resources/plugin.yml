@@ -5,9 +5,9 @@ api-version: "1.19"
 description: "${description}"
 author: "BillyGalbreath"
 depend:
-  - ServerGUI
+  - Guithium
 
 commands:
   screen:
-    description: Open the test screen
-    permission: servergui.command.screen
+    description: Open the example screen
+    permission: guithium.command.screen

@@ -1,11 +1,11 @@
-package net.pl3x.servergui.test.command;
+package net.pl3x.guithium.test.command;
 
-import net.pl3x.servergui.api.ServerGUI;
-import net.pl3x.servergui.api.gui.Screen;
-import net.pl3x.servergui.api.gui.element.Button;
-import net.pl3x.servergui.api.gui.element.Element;
-import net.pl3x.servergui.api.gui.element.Image;
-import net.pl3x.servergui.api.gui.element.Text;
+import net.pl3x.guithium.api.Guithium;
+import net.pl3x.guithium.api.gui.Screen;
+import net.pl3x.guithium.api.gui.element.Button;
+import net.pl3x.guithium.api.gui.element.Element;
+import net.pl3x.guithium.api.gui.element.Image;
+import net.pl3x.guithium.api.gui.element.Text;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -71,7 +71,7 @@ public class ScreenCommand implements TabExecutor {
         screen.addElements(elements);
 
         // open screen to the player
-        screen.open(ServerGUI.api().getPlayerManager().get(bukkit.getUniqueId()));
+        screen.open(Guithium.api().getPlayerManager().get(bukkit.getUniqueId()));
         return true;
     }
 }

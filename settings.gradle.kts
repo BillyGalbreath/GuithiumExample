@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "ServerGUITest"
+rootProject.name = "GuithiumExample"

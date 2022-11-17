@@ -1,12 +1,14 @@
 package net.pl3x.servergui.test.command;
 
+import net.pl3x.servergui.api.ServerGUI;
 import net.pl3x.servergui.api.gui.Screen;
+import net.pl3x.servergui.api.gui.element.Button;
+import net.pl3x.servergui.api.gui.element.Element;
 import net.pl3x.servergui.api.gui.element.Image;
 import net.pl3x.servergui.api.gui.element.Text;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,18 +23,13 @@ public class ScreenCommand implements TabExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (!(sender instanceof Player player)) {
+        if (!(sender instanceof org.bukkit.entity.Player bukkit)) {
             sender.sendMessage("Player only command.");
             return true;
         }
 
-        // create a new screen
-        Screen screen = Screen.builder("test:screen")
-            .setBackground(Screen.Background.TEXTURE)
-            .build();
-
         // populate screen with elements
-        screen.addElements(List.of(
+        List<Element> elements = List.of(
             Image.builder("test:hayley")
                 .setSize(120, 150)
                 .setPos(0, 20)
@@ -51,11 +48,30 @@ public class ScreenCommand implements TabExecutor {
                 .setText("bottom right")
                 .setAnchor(1, 1)
                 .setOffset(1, 1)
+                .build(),
+            Button.builder("test:button")
+                .setText("Click Me")
+                .setPos(0, 20)
+                .setAnchor(0.5F, 0)
+                .setOffset(0.5F, 0)
+                .setSize(100, 20)
+                .onClick((screen, button, player) -> {
+                    System.out.println("onClick fired");
+                    screen.close(player);
+                })
                 .build()
-        ));
+        );
 
-        // send screen to the player
-        screen.send(player.getUniqueId());
+        // create a new screen
+        Screen screen = Screen.builder("test:screen")
+            .setBackground(Screen.Background.GRADIENT)
+            .build();
+
+        // add elements to the screen
+        screen.addElements(elements);
+
+        // open screen to the player
+        screen.open(ServerGUI.api().getPlayerManager().get(bukkit.getUniqueId()));
         return true;
     }
 }

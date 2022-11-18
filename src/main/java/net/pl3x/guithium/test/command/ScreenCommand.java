@@ -1,5 +1,7 @@
 package net.pl3x.guithium.test.command;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.pl3x.guithium.api.Guithium;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Button;
@@ -39,13 +41,13 @@ public class ScreenCommand implements TabExecutor {
                 .setPos(100, 100)
                 .build(),
             Text.builder("test:crosshair")
-                .setText("O")
+                .setText(Component.text("O"))
                 .setAnchor(0.5F, 0.5F)
                 .setOffset(0.5F, 0.5F)
                 .setShadow(false)
                 .build(),
             Text.builder("test:footnote")
-                .setText("bottom right")
+                .setText(Component.text("bottom right"))
                 .setAnchor(1, 1)
                 .setOffset(1, 1)
                 .build(),
@@ -59,6 +61,7 @@ public class ScreenCommand implements TabExecutor {
                     System.out.println("onClick fired");
                     screen.close(player);
                 })
+                .setTooltip(MiniMessage.miniMessage().deserialize("<green>Testing <b><blue>testing</blue> 1 \n2</b> <red>3</red> 4 5"))
                 .build()
         );
 

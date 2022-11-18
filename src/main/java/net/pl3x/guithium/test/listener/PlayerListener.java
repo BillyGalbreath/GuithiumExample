@@ -1,5 +1,6 @@
 package net.pl3x.guithium.test.listener;
 
+import net.kyori.adventure.text.Component;
 import net.pl3x.guithium.api.Guithium;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Element;
@@ -82,7 +83,7 @@ public class PlayerListener implements Listener {
         if (element instanceof Text text) {
             // update the text
             String coords = loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ();
-            text.setText(coords);
+            text.setText(Component.text(coords));
 
             // send the updated text element to the player
             text.send(player);

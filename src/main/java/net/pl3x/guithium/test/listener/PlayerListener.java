@@ -45,28 +45,6 @@ public class PlayerListener implements Listener {
         }
     }
 
-    private Screen createHud(Player player) {
-        // build a new hud screen
-        Screen hud = Screen.builder("test:hud")
-            .setType(Screen.Type.HUD)
-            .build();
-
-        // add the coords text element
-        hud.addElement(
-            Text.builder("test:coords")
-                .build()
-        );
-
-        // send the hud to the player
-        hud.open(player);
-
-        // store the hud
-        this.huds.put(player.getUUID(), hud);
-
-        // return the new hud
-        return hud;
-    }
-
     private void updateHud(Player player, Location loc) {
         // get the player's current coords hud
         Screen hud = this.huds.get(player.getUUID());
@@ -88,5 +66,27 @@ public class PlayerListener implements Listener {
             // send the updated text element to the player
             text.send(player);
         }
+    }
+
+    private Screen createHud(Player player) {
+        // build a new hud screen
+        Screen hud = Screen.builder("test:hud")
+            .setType(Screen.Type.HUD)
+            .build();
+
+        // add the coords text element
+        hud.addElement(
+            Text.builder("test:coords")
+                .build()
+        );
+
+        // send the hud to the player
+        hud.open(player);
+
+        // store the hud
+        this.huds.put(player.getUUID(), hud);
+
+        // return the new hud
+        return hud;
     }
 }

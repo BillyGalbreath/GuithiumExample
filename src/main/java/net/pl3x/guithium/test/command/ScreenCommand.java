@@ -3,7 +3,6 @@ package net.pl3x.guithium.test.command;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.pl3x.guithium.api.Guithium;
-import net.pl3x.guithium.api.Key;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Button;
 import net.pl3x.guithium.api.gui.element.Element;
@@ -33,15 +32,20 @@ public class ScreenCommand implements TabExecutor {
             return true;
         }
 
+        // just double-check the texture exists
+        Texture hayley = Guithium.api().getTextureManager().get("test:haley");
+        if (hayley == null) {
+            hayley = new Texture("test:hayley", "https://pl3x.net/hayley.png");
+            Guithium.api().getTextureManager().add(hayley);
+        }
+
         // populate screen with elements
         List<Element> elements = List.of(
             // mmmm, hayley ^_^
             Image.builder("test:hayley")
                 .setSize(120, 150)
                 .setPos(0, 20)
-                .setTexture(
-                    new Texture(Key.of("test:hayley"), "https://pl3x.net/hayley.png")
-                )
+                .setTexture(hayley)
                 .build(),
             // some text centered in the screen
             Text.builder("test:centered_text")

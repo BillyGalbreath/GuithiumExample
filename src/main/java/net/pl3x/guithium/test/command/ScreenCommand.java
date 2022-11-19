@@ -3,12 +3,13 @@ package net.pl3x.guithium.test.command;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.pl3x.guithium.api.Guithium;
+import net.pl3x.guithium.api.Key;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Button;
 import net.pl3x.guithium.api.gui.element.Element;
-import net.pl3x.guithium.api.gui.element.Gradient;
 import net.pl3x.guithium.api.gui.element.Image;
 import net.pl3x.guithium.api.gui.element.Text;
+import net.pl3x.guithium.api.gui.texture.Texture;
 import net.pl3x.guithium.api.player.Player;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -38,6 +39,9 @@ public class ScreenCommand implements TabExecutor {
             Image.builder("test:hayley")
                 .setSize(120, 150)
                 .setPos(0, 20)
+                .setTexture(
+                    new Texture(Key.of("test:hayley"), "https://pl3x.net/hayley.png")
+                )
                 .build(),
             // some text centered in the screen
             Text.builder("test:centered_text")
@@ -71,14 +75,15 @@ public class ScreenCommand implements TabExecutor {
 
         // create a new screen with custom gradient background
         Screen screen = Screen.builder("test:screen")
-            .setBackground(
+            .setBackground(Image.TILED_DIRT)
+            /*.setBackground(
                 Gradient.builder("test:background")
                     .setColorTopLeft(0xC0FF0000)
                     .setColorTopRight(0xC000FF00)
                     .setColorBottomLeft(0xD00000FF)
                     .setColorBottomRight(0xD0FFFF00)
                     .build()
-            )
+            )*/
             .build();
 
         // add our own elements to the screen

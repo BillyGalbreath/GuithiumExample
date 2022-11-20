@@ -5,7 +5,7 @@ import net.pl3x.guithium.api.Guithium;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Element;
 import net.pl3x.guithium.api.gui.element.Text;
-import net.pl3x.guithium.api.player.Player;
+import net.pl3x.guithium.api.player.WrappedPlayer;
 import net.pl3x.guithium.plugin.event.HelloEvent;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
@@ -24,7 +24,7 @@ public class PlayerListener implements Listener {
     public void onHello(HelloEvent event) {
         org.bukkit.entity.Player bukkit = event.getPlayer();
 
-        Player player = Guithium.api().getPlayerManager().get(bukkit.getUniqueId());
+        WrappedPlayer player = Guithium.api().getPlayerManager().get(bukkit.getUniqueId());
 
         // update the coords on the hud
         updateHud(player, bukkit.getLocation());
@@ -39,13 +39,13 @@ public class PlayerListener implements Listener {
     public void onMove(PlayerMoveEvent event) {
         // check if player actually moved to a new block
         if (event.hasChangedBlock()) {
-            Player player = Guithium.api().getPlayerManager().get(event.getPlayer().getUniqueId());
+            WrappedPlayer player = Guithium.api().getPlayerManager().get(event.getPlayer().getUniqueId());
             // up the coords on the hud
             updateHud(player, event.getTo());
         }
     }
 
-    private void updateHud(Player player, Location loc) {
+    private void updateHud(WrappedPlayer player, Location loc) {
         // get the player's current coords hud
         Screen hud = this.huds.get(player.getUUID());
 
@@ -68,7 +68,7 @@ public class PlayerListener implements Listener {
         }
     }
 
-    private Screen createHud(Player player) {
+    private Screen createHud(WrappedPlayer player) {
         // build a new hud screen
         Screen hud = Screen.builder("test:hud")
             .setType(Screen.Type.HUD)

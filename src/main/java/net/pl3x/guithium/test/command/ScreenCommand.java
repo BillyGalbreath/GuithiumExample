@@ -9,7 +9,7 @@ import net.pl3x.guithium.api.gui.element.Checkbox;
 import net.pl3x.guithium.api.gui.element.Element;
 import net.pl3x.guithium.api.gui.element.Image;
 import net.pl3x.guithium.api.gui.element.Text;
-import net.pl3x.guithium.api.player.Player;
+import net.pl3x.guithium.api.player.WrappedPlayer;
 import net.pl3x.guithium.test.GuithiumExample;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -100,10 +100,10 @@ public class ScreenCommand implements TabExecutor {
         screen.addElements(elements);
 
         // get the wrapped player from Guithium
-        Player player = Guithium.api().getPlayerManager().get(bukkitPlayer.getUniqueId());
+        WrappedPlayer wrappedPlayer = Guithium.api().getPlayerManager().get(bukkitPlayer.getUniqueId());
 
         // open screen to the player
-        screen.open(player);
+        screen.open(wrappedPlayer);
         return true;
     }
 }

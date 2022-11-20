@@ -5,11 +5,12 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.pl3x.guithium.api.Guithium;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Button;
+import net.pl3x.guithium.api.gui.element.Checkbox;
 import net.pl3x.guithium.api.gui.element.Element;
 import net.pl3x.guithium.api.gui.element.Image;
 import net.pl3x.guithium.api.gui.element.Text;
-import net.pl3x.guithium.api.gui.texture.Texture;
 import net.pl3x.guithium.api.player.Player;
+import net.pl3x.guithium.test.GuithiumExample;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -32,20 +33,13 @@ public class ScreenCommand implements TabExecutor {
             return true;
         }
 
-        // just double-check the texture exists
-        Texture hayley = Guithium.api().getTextureManager().get("test:haley");
-        if (hayley == null) {
-            hayley = new Texture("test:hayley", "https://pl3x.net/hayley.png");
-            Guithium.api().getTextureManager().add(hayley);
-        }
-
         // populate screen with elements
         List<Element> elements = List.of(
             // mmmm, hayley ^_^
             Image.builder("test:hayley")
                 .setSize(120, 150)
                 .setPos(0, 20)
-                .setTexture(hayley)
+                .setTexture(GuithiumExample.HAYLEY)
                 .build(),
             // some text centered in the screen
             Text.builder("test:centered_text")
@@ -74,6 +68,18 @@ public class ScreenCommand implements TabExecutor {
                     screen.close(player);
                 })
                 .setTooltip(MiniMessage.miniMessage().deserialize("<green>Testing <b><blue>testing</blue> 1 \n2</b> <red>3</red> 4 5"))
+                .build(),
+            Checkbox.builder("test:checkbox")
+                .setText("Toggle Me!")
+                .setPos(0, 50)
+                .setAnchor(0.5F, 0)
+                .setOffset(0.5F, 0)
+                .setSize(100, 20)
+                .onClick((screen, checkbox, player, checked) -> {
+                    // this code will fire when the button is clicked
+                    System.out.println("Checkbox (" + checkbox.getKey() + ") toggled: " + checked);
+                })
+                .setTooltip(MiniMessage.miniMessage().deserialize("Just testing out a really long tooltip text for this tiny little checkbox here on the screen so we can see if the text wraps good enough or not."))
                 .build()
         );
 

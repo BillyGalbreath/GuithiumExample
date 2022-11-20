@@ -8,6 +8,8 @@ import net.pl3x.guithium.test.listener.PlayerListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class GuithiumExample extends JavaPlugin {
+    public static final Texture HAYLEY = Texture.of("test:hayley", "https://pl3x.net/hayley.png");
+
     public void onEnable() {
         getCommand("screen").setExecutor(new ScreenCommand());
 
@@ -15,6 +17,6 @@ public class GuithiumExample extends JavaPlugin {
 
         // preload any textures to be used
         TextureManager textureManager = Guithium.api().getTextureManager();
-        textureManager.add(new Texture("test:hayley", "https://pl3x.net/hayley.png"));
+        textureManager.add(HAYLEY);
     }
 }

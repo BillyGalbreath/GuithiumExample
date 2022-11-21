@@ -4,8 +4,18 @@ import net.pl3x.guithium.api.Key;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Button;
 import net.pl3x.guithium.api.gui.element.Gradient;
+import net.pl3x.guithium.api.gui.element.Textbox;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 public class Calculator extends Screen {
+    private static final ScriptEngineManager SEM = new ScriptEngineManager();
+    private static final ScriptEngine SE = SEM.getEngineByName("JavaScript");
+
+    private final Textbox display;
+
     public Calculator() {
         super(Key.of("guithium:calc"));
 
@@ -23,16 +33,24 @@ public class Calculator extends Screen {
         int col2 = 1;
         int col3 = 23;
 
-        addElement(Gradient.builder("calc:display")
+        this.display = Textbox.builder("calc:display")
             .setPos(col0, row0)
             .setAnchor(0.5F, 0.5F)
             .setSize(86, 20)
-            .setColor(0xFF000000)
-            .build());
+            .setCanLoseFocus(false)
+            .setMaxLength(32)
+            .setEditable(false)
+            .setTextColorUneditable(0xFFE0E0E0)
+            .build();
+
+        addElement(this.display);
 
         addElement(button("open_parenthesis", "(", col0, row1));
         addElement(button("close_parenthesis", ")", col1, row1));
-        addElement(button("clear", "C", col2, row1));
+        addElement(button("clear", "C", col2, row1, (screen, button, player) -> {
+            this.display.setValue("");
+            this.display.send(player);
+        }));
         addElement(button("multiply", "*", col3, row1));
 
         addElement(button("seven", "7", col0, row2));
@@ -52,16 +70,33 @@ public class Calculator extends Screen {
 
         addElement(button("zero", "0", col0, row5));
         addElement(button("dot", ".", col1, row5));
-        addElement(button("equals", "=", col3, row5));
+        addElement(button("equals", "=", col3, row5, (screen, button, player) -> {
+            try {
+                String value = this.display.getValue();
+                String answer = String.valueOf(SE.eval(value));
+                this.display.setValue(answer);
+            } catch (ScriptException e) {
+                this.display.setValue("Error");
+            }
+            this.display.send(player);
+        }));
     }
 
     private Button button(String name, String text, int x, int y) {
+        return button(name, text, x, y, (screen, button, player) -> {
+            String value = this.display.getValue() == null ? "" : this.display.getValue();
+            this.display.setValue(value + button.getText());
+            this.display.send(player);
+        });
+    }
+
+    private Button button(String name, String text, int x, int y, Button.OnClick onClick) {
         return Button.builder("calc:btn_" + name)
             .setPos(x, y)
             .setAnchor(0.5F, 0.5F)
             .setSize(20, 20)
             .setText(text)
+            .onClick(onClick)
             .build();
     }
-
 }

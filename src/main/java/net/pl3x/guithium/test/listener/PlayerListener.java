@@ -2,12 +2,15 @@ package net.pl3x.guithium.test.listener;
 
 import net.kyori.adventure.text.Component;
 import net.pl3x.guithium.api.Guithium;
+import net.pl3x.guithium.api.action.ActionHandler;
+import net.pl3x.guithium.api.action.ActionListener;
+import net.pl3x.guithium.api.action.player.PlayerJoinedAction;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Element;
 import net.pl3x.guithium.api.gui.element.Text;
 import net.pl3x.guithium.api.player.WrappedPlayer;
-import net.pl3x.guithium.plugin.event.HelloEvent;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -17,18 +20,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class PlayerListener implements Listener {
+public class PlayerListener implements ActionListener, Listener {
     private final Map<UUID, Screen> huds = new HashMap<>();
 
-    @EventHandler
-    public void onHello(HelloEvent event) {
-        org.bukkit.entity.Player bukkit = event.getPlayer();
+    // Listen to Guithium Actions
 
-        WrappedPlayer player = Guithium.api().getPlayerManager().get(bukkit.getUniqueId());
+    @ActionHandler
+    public void onPlayerJoined(PlayerJoinedAction action) {
+        WrappedPlayer player = action.getPlayer();
 
         // update the coords on the hud
-        updateHud(player, bukkit.getLocation());
+        updateHud(player, player.<Player>unwrap().getLocation());
     }
+
+    // Listen to Bukkit Events
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
@@ -44,6 +49,8 @@ public class PlayerListener implements Listener {
             updateHud(player, event.getTo());
         }
     }
+
+    // Common methods
 
     private void updateHud(WrappedPlayer player, Location loc) {
         // get the player's current coords hud

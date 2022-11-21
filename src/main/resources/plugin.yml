@@ -8,6 +8,11 @@ depend:
   - Guithium
 
 commands:
+  calculator:
+    description: Opens a calculator GUI
+    permission: guithium.command.calculator
+    aliases:
+      - calc
   screen:
     description: Open the example screen
     permission: guithium.command.screen

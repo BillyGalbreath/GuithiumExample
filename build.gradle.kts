@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT")
-    compileOnly("net.pl3x.guithium:guithium:1.19.2-SNAPSHOT")
+    compileOnly("net.pl3x.guithium:guithium-api:1.19.2-SNAPSHOT")
 }
 
 tasks {

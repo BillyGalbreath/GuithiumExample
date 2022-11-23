@@ -6,8 +6,10 @@ import net.pl3x.guithium.api.Guithium;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Button;
 import net.pl3x.guithium.api.gui.element.Checkbox;
+import net.pl3x.guithium.api.gui.element.Circle;
 import net.pl3x.guithium.api.gui.element.Element;
 import net.pl3x.guithium.api.gui.element.Image;
+import net.pl3x.guithium.api.gui.element.Line;
 import net.pl3x.guithium.api.gui.element.Text;
 import net.pl3x.guithium.api.player.WrappedPlayer;
 import net.pl3x.guithium.test.GuithiumExample;
@@ -35,6 +37,24 @@ public class ScreenCommand implements TabExecutor {
 
         // populate screen with elements
         List<Element> elements = List.of(
+            Circle.builder("test:circle")
+                .setPos(0, 0)
+                .setAnchor(0.5F, 0.5F)
+                .setOffset(0.5F, 0.5F)
+                .setRadius(50F)
+                .setResolution(20)
+                .setInnerColor(0xFFFF0000)
+                .setOuterColor(0xFF0000FF)
+                .build(),
+            Line.builder("test:line")
+                .setPos(0, 50)
+                .setAnchor(0, 0)
+                .setEndPos(0, 50)
+                .setEndAnchor(1, 0)
+                .setStartColor(0xFFFF0000)
+                .setEndColor(0xFF0000FF)
+                .setWidth(5F)
+                .build(),
             // mmmm, hayley ^_^
             Image.builder("test:hayley")
                 .setSize(120, 150)

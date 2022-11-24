@@ -3,7 +3,6 @@ package net.pl3x.guithium.test.gui;
 import net.pl3x.guithium.api.Key;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Button;
-import net.pl3x.guithium.api.gui.element.Gradient;
 import net.pl3x.guithium.api.gui.element.Textbox;
 
 import javax.script.ScriptEngine;
@@ -19,7 +18,7 @@ public class Calculator extends Screen {
     public Calculator() {
         super(Key.of("guithium:calc"));
 
-        this.addElement(Gradient.DEFAULT);
+        this.addElement(Screen.GRADIENT_BACKGROUND);
 
         int row0 = -77;
         int row1 = -55;
@@ -37,6 +36,7 @@ public class Calculator extends Screen {
             .setPos(col0, row0)
             .setAnchor(0.5F, 0.5F)
             .setSize(86, 20)
+            .setBordered(true)
             .setCanLoseFocus(false)
             .setMaxLength(32)
             .setEditable(false)

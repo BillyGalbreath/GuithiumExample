@@ -4,6 +4,7 @@ import net.pl3x.guithium.api.Guithium;
 import net.pl3x.guithium.api.gui.texture.Texture;
 import net.pl3x.guithium.api.gui.texture.TextureManager;
 import net.pl3x.guithium.test.command.ScreenCommand;
+import net.pl3x.guithium.test.gui.StatsHud;
 import net.pl3x.guithium.test.listener.PlayerListener;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
@@ -18,13 +19,14 @@ public class GuithiumExample extends JavaPlugin {
         registerCommand("screen", new ScreenCommand());
 
         // register listeners
-        PlayerListener playerListener = new PlayerListener();
+        PlayerListener playerListener = new PlayerListener(this);
         Guithium.api().getActionRegistry().register(playerListener);
         getServer().getPluginManager().registerEvents(playerListener, this);
 
         // preload any textures to be used
         TextureManager textureManager = Guithium.api().getTextureManager();
         textureManager.add(HAYLEY);
+        textureManager.add(StatsHud.HUD);
     }
 
     private void registerCommand(String commandName, CommandExecutor executor) {

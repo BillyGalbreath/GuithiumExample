@@ -2,6 +2,7 @@ plugins {
     `java-library`
     id("eclipse")
     id("idea")
+    id("xyz.jpenilla.run-paper") version "2.0.0"
 }
 
 group = "net.pl3x.guithium.test"
@@ -52,5 +53,8 @@ tasks {
                 "description" to project.description
             )
         }
+    }
+    runServer {
+        minecraftVersion("1.19.2")
     }
 }

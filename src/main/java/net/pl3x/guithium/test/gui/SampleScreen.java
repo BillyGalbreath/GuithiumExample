@@ -12,6 +12,7 @@ import net.pl3x.guithium.api.gui.element.Element;
 import net.pl3x.guithium.api.gui.element.Image;
 import net.pl3x.guithium.api.gui.element.Line;
 import net.pl3x.guithium.api.gui.element.Radio;
+import net.pl3x.guithium.api.gui.element.Slider;
 import net.pl3x.guithium.api.gui.element.Text;
 import net.pl3x.guithium.test.GuithiumExample;
 
@@ -79,7 +80,7 @@ public class SampleScreen extends Screen {
                 .build(),
             // a clickable button at the top center
             Button.builder("test:button")
-                .setText("Click Me")
+                .setLabel("Click Me")
                 .setPos(0, 20)
                 .setAnchor(0.5F, 0)
                 .setOffset(0.5F, 0)
@@ -100,37 +101,40 @@ public class SampleScreen extends Screen {
                 .setRotation(40F)
                 .setScale(5.0F)
                 .build(),
-            Checkbox.builder("test:checkbox1")
-                .setLabel("One")
+            Slider.builder("test:slider")
+                .setLabel("Slider {value}/{max}")
                 .setPos(0, 50)
                 .setAnchor(0.5F, 0)
                 .setOffset(0.5F, 0)
                 .setSize(100, 20)
+                .setValue(0.5D)
+                .setMin(0)
+                .setMax(25)
+                .onChange((screen, slider, player, value) -> {
+                    // this code will fire when the slider is changed
+                    System.out.println("Slider (" + slider.getKey() + ") changed: " + value);
+                })
+                .build(),
+            Checkbox.builder("test:checkbox1")
+                .setLabel("One")
+                .setPos(0, 75)
+                .setAnchor(0.5F, 0)
+                .setOffset(0.5F, 0)
+                .setSize(100, 20)
                 .onToggled((screen, checkbox, player, checked) -> {
-                    // this code will fire when the checkbox is clicked
+                    // this code will fire when the checkbox is toggled
                     System.out.println("Checkbox (" + checkbox.getKey() + ") toggled: " + checked);
                 })
                 .setTooltip(MiniMessage.miniMessage().deserialize("Just testing out a really long tooltip text for this tiny little checkbox here on the screen so we can see if the text wraps good enough or not."))
                 .build(),
             Checkbox.builder("test:checkbox2")
                 .setLabel("Two")
-                .setPos(0, 75)
-                .setAnchor(0.5F, 0)
-                .setOffset(0.5F, 0)
-                .setSize(100, 20)
-                .onToggled((screen, checkbox, player, checked) -> {
-                    // this code will fire when the checkbox is clicked
-                    System.out.println("Checkbox (" + checkbox.getKey() + ") toggled: " + checked);
-                })
-                .build(),
-            Checkbox.builder("test:checkbox3")
-                .setLabel("Three")
                 .setPos(0, 100)
                 .setAnchor(0.5F, 0)
                 .setOffset(0.5F, 0)
                 .setSize(100, 20)
                 .onToggled((screen, checkbox, player, checked) -> {
-                    // this code will fire when the checkbox is clicked
+                    // this code will fire when the checkbox is toggled
                     System.out.println("Checkbox (" + checkbox.getKey() + ") toggled: " + checked);
                 })
                 .build(),
@@ -142,7 +146,7 @@ public class SampleScreen extends Screen {
                 .setOffset(0.5F, 0)
                 .setSize(100, 20)
                 .onToggled((screen, radio, player, checked) -> {
-                    // this code will fire when the radio button is clicked
+                    // this code will fire when the radio button is toggled
                     System.out.println("Radio (" + radio.getKey() + ") toggled: " + checked);
                 })
                 .build(),
@@ -154,7 +158,7 @@ public class SampleScreen extends Screen {
                 .setOffset(0.5F, 0)
                 .setSize(100, 20)
                 .onToggled((screen, radio, player, checked) -> {
-                    // this code will fire when the radio button is clicked
+                    // this code will fire when the radio button is toggled
                     System.out.println("Radio (" + radio.getKey() + ") toggled: " + checked);
                 })
                 .build(),
@@ -166,7 +170,7 @@ public class SampleScreen extends Screen {
                 .setOffset(0.5F, 0)
                 .setSize(100, 20)
                 .onToggled((screen, radio, player, checked) -> {
-                    // this code will fire when the radio button is clicked
+                    // this code will fire when the radio button is toggled
                     System.out.println("Radio (" + radio.getKey() + ") toggled: " + checked);
                 })
                 .build()

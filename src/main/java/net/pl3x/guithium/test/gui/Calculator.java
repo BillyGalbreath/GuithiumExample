@@ -92,7 +92,7 @@ public class Calculator extends Screen {
         return button(name, text, x, y, (screen, button, player) -> {
             // add this button's text label to the equation in the display
             String value = this.display.getValue() == null ? "" : this.display.getValue();
-            this.display.setValue(value + button.getText());
+            this.display.setValue(value + button.getLabel());
             this.display.send(player);
         });
     }
@@ -103,7 +103,7 @@ public class Calculator extends Screen {
             .setPos(x, y)
             .setAnchor(0.5F, 0.5F)
             .setSize(20, 20)
-            .setText(text)
+            .setLabel(text)
             .onClick(onClick)
             .build();
     }

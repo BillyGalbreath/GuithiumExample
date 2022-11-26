@@ -71,8 +71,16 @@ public class StatsHud extends Screen {
         Player player = this.player.unwrap();
         double health = player.getHealth();
         double maxHealth = player.getMaxHealth();
+        float percent = (float) (health / maxHealth);
 
-        this.healthColor.setSize((float) (94 * (health / maxHealth)), 8);
+        this.healthColor.setSize(94 * percent, 8);
+        if (percent > 0.5F) {
+            this.healthColor.setColor(0xFFFF0000);
+        } else if (percent > 0.2F) {
+            this.healthColor.setColor(0xFFB80000);
+        } else {
+            this.healthColor.setColor(0xFF800000);
+        }
         this.healthColor.send(this.player);
 
         this.healthText.setText(Component.text(health + "/" + maxHealth));

@@ -3,7 +3,6 @@ package net.pl3x.guithium.test;
 import net.pl3x.guithium.api.Guithium;
 import net.pl3x.guithium.api.gui.texture.Texture;
 import net.pl3x.guithium.api.gui.texture.TextureManager;
-import net.pl3x.guithium.test.command.CalculatorCommand;
 import net.pl3x.guithium.test.command.ScreenCommand;
 import net.pl3x.guithium.test.listener.PlayerListener;
 import org.bukkit.command.CommandExecutor;
@@ -15,7 +14,7 @@ public class GuithiumExample extends JavaPlugin {
 
     public void onEnable() {
         // register commands
-        registerCommand("calculator", new CalculatorCommand());
+        registerCommand("calculator", new ScreenCommand());
         registerCommand("screen", new ScreenCommand());
 
         // register listeners

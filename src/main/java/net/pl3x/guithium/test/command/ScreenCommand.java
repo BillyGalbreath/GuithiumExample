@@ -3,6 +3,7 @@ package net.pl3x.guithium.test.command;
 import net.pl3x.guithium.api.Guithium;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.player.WrappedPlayer;
+import net.pl3x.guithium.test.gui.AnchorsScreen;
 import net.pl3x.guithium.test.gui.Calculator;
 import net.pl3x.guithium.test.gui.SampleScreen;
 import org.bukkit.command.Command;
@@ -39,8 +40,11 @@ public class ScreenCommand implements TabExecutor {
 
         // create a new screen based on command used
         Screen screen;
-        if (label.toLowerCase(Locale.ROOT).startsWith("calc")) {
+        String cmd = label.toLowerCase(Locale.ROOT);
+        if (cmd.startsWith("calc")) {
             screen = new Calculator();
+        } else if (cmd.equals("anchors")) {
+            screen = new AnchorsScreen();
         } else {
             screen = new SampleScreen();
         }

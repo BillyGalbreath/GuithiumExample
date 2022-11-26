@@ -15,6 +15,7 @@ public class GuithiumExample extends JavaPlugin {
 
     public void onEnable() {
         // register commands
+        registerCommand("anchors", new ScreenCommand());
         registerCommand("calculator", new ScreenCommand());
         registerCommand("screen", new ScreenCommand());
 

@@ -8,6 +8,9 @@ depend:
   - guithium
 
 commands:
+  anchors:
+    description: Opens an anchors example
+    permission: guithium.command.anchors
   calculator:
     description: Opens a calculator GUI
     permission: guithium.command.calculator

@@ -108,8 +108,8 @@ public class SampleScreen extends Screen {
                 .setOffset(0.5F, 0)
                 .setSize(100, 20)
                 .setValue(0.5D)
-                .setMin(0)
-                .setMax(25)
+                .setMin(0D)
+                .setMax(25D)
                 .onChange((screen, slider, player, value) -> {
                     // this code will fire when the slider is changed
                     System.out.println("Slider (" + slider.getKey() + ") changed: " + value);

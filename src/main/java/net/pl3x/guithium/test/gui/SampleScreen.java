@@ -8,7 +8,6 @@ import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Button;
 import net.pl3x.guithium.api.gui.element.Checkbox;
 import net.pl3x.guithium.api.gui.element.Circle;
-import net.pl3x.guithium.api.gui.element.Element;
 import net.pl3x.guithium.api.gui.element.Image;
 import net.pl3x.guithium.api.gui.element.Line;
 import net.pl3x.guithium.api.gui.element.Radio;
@@ -26,12 +25,7 @@ public class SampleScreen extends Screen {
         addElement(Screen.TILED_DIRT_BACKGROUND);
 
         // add our elements to the screen
-        addElements(createSampleElements());
-    }
-
-    private List<Element> createSampleElements() {
-        // populate screen with elements
-        return List.of(
+        addElements(List.of(
             Circle.builder("test:circle")
                 .setPos(100, -50)
                 .setAnchor(0.5F, 0.5F)
@@ -110,6 +104,7 @@ public class SampleScreen extends Screen {
                 .setValue(0.5D)
                 .setMin(0D)
                 .setMax(25D)
+                .setDecimalFormat("#")
                 .onChange((screen, slider, player, value) -> {
                     // this code will fire when the slider is changed
                     System.out.println("Slider (" + slider.getKey() + ") changed: " + value);
@@ -174,6 +169,6 @@ public class SampleScreen extends Screen {
                     System.out.println("Radio (" + radio.getKey() + ") toggled: " + checked);
                 })
                 .build()
-        );
+        ));
     }
 }

@@ -32,13 +32,7 @@ public class AnchorsScreen extends Screen {
     private List<Element> createElements() {
         // populate screen with elements
         return List.of(
-            this.gradient = Gradient.builder("test:gradient")
-                .setPos(0, 0)
-                .setAnchor(0.5F, 0.5F)
-                .setOffset(0.5F, 0.5F)
-                .setSize(100, 20)
-                .setColor(0x80FFFF00)
-                .build(),
+            this.gradient = Gradient.builder("test:gradient").setPos(0, 0).setAnchor(0.5F, 0.5F).setOffset(0.5F, 0.5F).setSize(100, 20).setColor(0x80FFFF00).build(),
             this.anchorX = Gradient.builder("test:line_anchor_x").setPos(0, 0).setAnchor(0.5F, 0F).setSize(1, 4000).setColor(0xFF0000FF).build(),
             this.anchorY = Gradient.builder("test:line_anchor_y").setPos(0, 0).setAnchor(0F, 0.5F).setSize(4000, 1).setColor(0xFF0000FF).build(),
             this.posX = Gradient.builder("test:line_pos_x").setPos(0, 0).setAnchor(0.5F, 0F).setSize(1, 4000).setColor(0xFFFF0000).build(),

@@ -32,7 +32,7 @@ public class ScreenCommand implements TabExecutor {
         }
 
         // get the wrapped player from Guithium and verify they have the mod installed
-        WrappedPlayer wrappedPlayer = Guithium.api().getPlayerManager().get(bukkitPlayer.getUniqueId());
+        WrappedPlayer wrappedPlayer = Guithium.api().getPlayerManager().get(bukkitPlayer);
         if (!wrappedPlayer.hasGuithium()) {
             sender.sendMessage("You must have Guithium installed to use this command");
             return true;

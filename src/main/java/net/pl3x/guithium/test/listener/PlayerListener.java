@@ -68,7 +68,7 @@ public class PlayerListener implements ActionListener, Listener {
         }
 
         // get the player and their coords hud
-        WrappedPlayer player = Guithium.api().getPlayerManager().get(event.getPlayer().getUniqueId());
+        WrappedPlayer player = Guithium.api().getPlayerManager().get(event.getPlayer());
         CoordsHud hud = this.coordsHuds.get(player.getUUID());
 
         // up the coords on the hud
@@ -90,7 +90,7 @@ public class PlayerListener implements ActionListener, Listener {
             return;
         }
 
-        WrappedPlayer player = Guithium.api().getPlayerManager().get(event.getEntity().getUniqueId());
+        WrappedPlayer player = Guithium.api().getPlayerManager().get(event.getEntity());
         if (player == null) {
             return;
         }

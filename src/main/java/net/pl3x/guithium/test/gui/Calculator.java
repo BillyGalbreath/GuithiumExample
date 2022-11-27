@@ -79,6 +79,9 @@ public class Calculator extends Screen {
             try {
                 String value = this.display.getValue();
                 String answer = String.valueOf(SE.eval(value));
+                if (answer.endsWith(".0")) {
+                    answer = answer.substring(0, answer.length() - 2);
+                }
                 this.display.setValue(answer);
             } catch (ScriptException e) {
                 this.display.setValue("Error");

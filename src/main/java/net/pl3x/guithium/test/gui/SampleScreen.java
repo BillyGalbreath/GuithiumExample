@@ -2,6 +2,7 @@ package net.pl3x.guithium.test.gui;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.pl3x.guithium.api.Key;
 import net.pl3x.guithium.api.gui.Screen;
@@ -13,6 +14,7 @@ import net.pl3x.guithium.api.gui.element.Line;
 import net.pl3x.guithium.api.gui.element.Radio;
 import net.pl3x.guithium.api.gui.element.Slider;
 import net.pl3x.guithium.api.gui.element.Text;
+import net.pl3x.guithium.api.gui.element.Textbox;
 import net.pl3x.guithium.test.GuithiumExample;
 
 import java.util.List;
@@ -22,86 +24,90 @@ public class SampleScreen extends Screen {
         super(Key.of("test:sample_screen"));
 
         // add one of the provided default backgrounds
-        addElement(Screen.TILED_DIRT_BACKGROUND);
+        addElement(Screen.GRADIENT_BACKGROUND);
 
         // add our elements to the screen
         addElements(List.of(
-            Circle.builder("test:circle")
-                .setPos(100, -50)
-                .setAnchor(0.5F, 0.5F)
+            Text.builder("test:title")
+                .setPos(0, 10)
+                .setAnchor(0.5F, 0)
+                .setOffset(0.5F, 0)
+                .setText(Component.text("Guithium").color(NamedTextColor.AQUA).decorate(TextDecoration.ITALIC))
+                .setScale(2.5F)
+                .build(),
+            Line.builder("test:line")
+                .setPos(0, 35)
+                .setEndPos(0, 35)
+                .setEndAnchor(1, 0)
+                .setStartColor(0xFFFF0000)
+                .setEndColor(0xFF0000FF)
+                .setWidth(3F)
+                .build(),
+            Text.builder("test:oh_my")
+                .setPos(80, 25)
+                .setAnchor(0.5F, 0)
                 .setOffset(0.5F, 0.5F)
-                .setRadius(50F)
-                .setResolution(20)
-                .setInnerColor(0xFFFF0000)
-                .setOuterColor(0xFF0000FF)
+                .setText(Component.text("Oh My!").color(NamedTextColor.YELLOW))
+                .setRotation(30F)
+                .setScale(1.5F)
                 .build(),
             Circle.builder("test:star")
-                .setPos(100, 50)
-                .setAnchor(0.5F, 0.5F)
+                .setPos(55, 165)
+                .setAnchor(0.5F, 0)
                 .setOffset(0.5F, 0.5F)
                 .setRadius(100F)
                 .setResolution(5)
                 .setInnerColor(0xFF6699CC)
                 .setOuterColor(0x0)
                 .build(),
-            Line.builder("test:line")
-                .setPos(0, 50)
-                .setAnchor(0, 0)
-                .setEndPos(0, 50)
-                .setEndAnchor(1, 0)
-                .setStartColor(0xFFFF0000)
-                .setEndColor(0xFF0000FF)
-                .setWidth(5F)
-                .build(),
-            // mmmm, hayley ^_^
             Image.builder("test:hayley")
-                .setSize(120, 150)
-                .setPos(0, 20)
+                .setPos(55, 165)
+                .setAnchor(0.5F, 0)
+                .setOffset(0.5F, 0.5F)
+                .setSize(60, 75)
+                .setScale(1.2F)
                 .setTexture(GuithiumExample.HAYLEY)
                 .build(),
-            // some text centered in the screen
-            /*Text.builder("test:centered_text")
-                .setText(Component.text("Centered Text"))
-                .setAnchor(0.5F, 0.5F)
-                .setOffset(0.5F, 0.5F)
-                .setShadow(false)
-                .build(),*/
-            // some text at the bottom right of the screen
-            Text.builder("test:footnote")
-                .setText(Component.text("bottom right"))
-                .setAnchor(1, 1)
-                .setOffset(1, 1)
-                .build(),
-            // a clickable button at the top center
-            Button.builder("test:button")
-                .setLabel("Click Me")
-                .setPos(0, 20)
+            Checkbox.builder("test:checkbox1")
+                .setLabel("Checkbox 1")
+                .setPos(-105, 45)
                 .setAnchor(0.5F, 0)
-                .setOffset(0.5F, 0)
                 .setSize(100, 20)
-                .onClick((screen, button, player) -> {
-                    // this code will fire when the button is clicked
-                    System.out.println("onClick fired!");
-                    // let's close the screen on the player's client
-                    screen.close(player);
+                .onToggled((screen, checkbox, player, checked) -> {
+                    // this code will fire when the checkbox is toggled
+                    System.out.println("Checkbox (" + checkbox.getKey() + ") toggled: " + checked);
                 })
-                .setTooltip(MiniMessage.miniMessage().deserialize("<green>Testing <b><blue>testing</blue> 1 \n2</b> <red>3</red> 4 5"))
+                .setTooltip(Component.text("Just testing out a really long tooltip text for this tiny little checkbox here on the screen so we can see if the text wraps good enough or not."))
                 .build(),
-            Text.builder("test:oh_my")
-                .setPos(-75, 75)
-                .setAnchor(1, 0)
-                .setOffset(1, 0)
-                .setText(Component.text("Oh My!").color(NamedTextColor.YELLOW))
-                .setRotation(40F)
-                .setScale(5.0F)
+            Checkbox.builder("test:checkbox2")
+                .setLabel("Checkbox 2")
+                .setPos(-105, 70)
+                .setAnchor(0.5F, 0)
+                .setSize(100, 20)
+                .setSelected(true)
+                .onToggled((screen, checkbox, player, checked) -> {
+                    // this code will fire when the checkbox is toggled
+                    System.out.println("Checkbox (" + checkbox.getKey() + ") toggled: " + checked);
+                })
+                .setTooltip(MiniMessage.miniMessage().deserialize("<gold><b><i>Minimessage Support!"))
+                .build(),
+            Checkbox.builder("test:checkbox3")
+                .setLabel("Checkbox 3")
+                .setPos(-105, 95)
+                .setAnchor(0.5F, 0)
+                .setSize(100, 20)
+                .setSelected(true)
+                .onToggled((screen, checkbox, player, checked) -> {
+                    // this code will fire when the checkbox is toggled
+                    System.out.println("Checkbox (" + checkbox.getKey() + ") toggled: " + checked);
+                })
                 .build(),
             Slider.builder("test:slider")
                 .setLabel("Slider {value}/{max}")
-                .setPos(0, 50)
+                .setPos(-105, 120)
                 .setAnchor(0.5F, 0)
-                .setOffset(0.5F, 0)
                 .setSize(100, 20)
-                .setValue(0.5D)
+                .setValue(10D)
                 .setMin(0D)
                 .setMax(25D)
                 .setDecimalFormat("#")
@@ -110,35 +116,32 @@ public class SampleScreen extends Screen {
                     System.out.println("Slider (" + slider.getKey() + ") changed: " + value);
                 })
                 .build(),
-            Checkbox.builder("test:checkbox1")
-                .setLabel("One")
-                .setPos(0, 75)
+            Textbox.builder("calc:display")
+                .setPos(-105, 145)
                 .setAnchor(0.5F, 0)
-                .setOffset(0.5F, 0)
                 .setSize(100, 20)
-                .onToggled((screen, checkbox, player, checked) -> {
-                    // this code will fire when the checkbox is toggled
-                    System.out.println("Checkbox (" + checkbox.getKey() + ") toggled: " + checked);
-                })
-                .setTooltip(MiniMessage.miniMessage().deserialize("Just testing out a really long tooltip text for this tiny little checkbox here on the screen so we can see if the text wraps good enough or not."))
+                .setBordered(true)
+                .setValue("Textbox")
+                .setTextColorUneditable(0xFFE0E0E0)
                 .build(),
-            Checkbox.builder("test:checkbox2")
-                .setLabel("Two")
-                .setPos(0, 100)
+            Button.builder("test:button")
+                .setLabel("Click Me")
+                .setPos(-105, 170)
                 .setAnchor(0.5F, 0)
-                .setOffset(0.5F, 0)
                 .setSize(100, 20)
-                .onToggled((screen, checkbox, player, checked) -> {
-                    // this code will fire when the checkbox is toggled
-                    System.out.println("Checkbox (" + checkbox.getKey() + ") toggled: " + checked);
+                .onClick((screen, button, player) -> {
+                    // this code will fire when the button is clicked
+                    System.out.println("onClick fired!");
+                    // let's close the screen on the player's client
+                    screen.close(player);
                 })
+                .setTooltip(MiniMessage.miniMessage().deserialize("<green>Clicking <b><blue>this</blue> button\nwill</b> <red>close</red> screen"))
                 .build(),
             Radio.builder("test:radio1")
                 .setGroup(Key.of("test:radio_group1"))
-                .setLabel("One")
-                .setPos(0, 125)
+                .setLabel("Radio Button 1")
+                .setPos(5, 45)
                 .setAnchor(0.5F, 0)
-                .setOffset(0.5F, 0)
                 .setSize(100, 20)
                 .onToggled((screen, radio, player, checked) -> {
                     // this code will fire when the radio button is toggled
@@ -147,11 +150,11 @@ public class SampleScreen extends Screen {
                 .build(),
             Radio.builder("test:radio2")
                 .setGroup(Key.of("test:radio_group1"))
-                .setLabel("Two")
-                .setPos(0, 150)
+                .setLabel("Radio Button 2")
+                .setPos(5, 70)
                 .setAnchor(0.5F, 0)
-                .setOffset(0.5F, 0)
                 .setSize(100, 20)
+                .setSelected(true)
                 .onToggled((screen, radio, player, checked) -> {
                     // this code will fire when the radio button is toggled
                     System.out.println("Radio (" + radio.getKey() + ") toggled: " + checked);
@@ -159,10 +162,9 @@ public class SampleScreen extends Screen {
                 .build(),
             Radio.builder("test:radio3")
                 .setGroup(Key.of("test:radio_group1"))
-                .setLabel("Three")
-                .setPos(0, 175)
+                .setLabel("Radio Button 3")
+                .setPos(5, 95)
                 .setAnchor(0.5F, 0)
-                .setOffset(0.5F, 0)
                 .setSize(100, 20)
                 .onToggled((screen, radio, player, checked) -> {
                     // this code will fire when the radio button is toggled

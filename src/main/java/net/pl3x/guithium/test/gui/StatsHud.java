@@ -11,6 +11,7 @@ import net.pl3x.guithium.api.gui.texture.Texture;
 import net.pl3x.guithium.api.player.WrappedPlayer;
 import org.bukkit.entity.Player;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class StatsHud extends Screen {
@@ -22,6 +23,8 @@ public class StatsHud extends Screen {
     private final Text healthText;
     private final Image healthMask;
     private final Gradient healthColor;
+
+    private final DecimalFormat df = new DecimalFormat("0.#");
 
     public StatsHud(WrappedPlayer player) {
         super(Key.of("test:stats_hud"), Type.HUD);
@@ -83,7 +86,7 @@ public class StatsHud extends Screen {
         }
         this.healthColor.send(this.player);
 
-        this.healthText.setText(Component.text(health + "/" + maxHealth));
+        this.healthText.setText(Component.text(this.df.format(health) + "/" + this.df.format(maxHealth)));
         this.healthText.send(this.player);
     }
 }

@@ -110,7 +110,7 @@ public class SampleScreen extends Screen {
                 .setValue(10D)
                 .setMin(0D)
                 .setMax(25D)
-                .setDecimalFormat("#")
+                .setDecimalFormat("0")
                 .onChange((screen, slider, player, value) -> {
                     // this code will fire when the slider is changed
                     System.out.println("Slider (" + slider.getKey() + ") changed: " + value);

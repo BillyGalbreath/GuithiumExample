@@ -60,13 +60,21 @@ public class SampleScreen extends Screen {
                 .setInnerColor(0xFF6699CC)
                 .setOuterColor(0x0)
                 .build(),
-            Image.builder("test:hayley")
+            /*Image.builder("test:hayley")
                 .setPos(55, 165)
                 .setAnchor(0.5F, 0)
                 .setOffset(0.5F, 0.5F)
                 .setSize(60, 75)
                 .setScale(1.2F)
                 .setTexture(GuithiumExample.HAYLEY)
+                .build(),*/
+            Image.builder("test:banana")
+                .setPos(55, 165)
+                .setAnchor(0.5F, 0)
+                .setOffset(0.5F, 0.5F)
+                .setSize(75, 75)
+                .setScale(1.2F)
+                .setTexture(GuithiumExample.BANANA)
                 .build(),
             Checkbox.builder("test:checkbox1")
                 .setLabel("Checkbox 1")

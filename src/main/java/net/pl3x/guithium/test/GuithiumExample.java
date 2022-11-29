@@ -11,6 +11,7 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class GuithiumExample extends JavaPlugin {
+    public static final Texture BANANA = Texture.of("test:banana", "https://www.gifcen.com/wp-content/uploads/2022/09/png-gif.gif");
     public static final Texture HAYLEY = Texture.of("test:hayley", "https://pl3x.net/hayley.png");
 
     public void onEnable() {
@@ -26,6 +27,7 @@ public class GuithiumExample extends JavaPlugin {
 
         // preload any textures to be used
         TextureManager textureManager = Guithium.api().getTextureManager();
+        textureManager.add(BANANA);
         textureManager.add(HAYLEY);
         textureManager.add(StatsHud.HUD);
     }

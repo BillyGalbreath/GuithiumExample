@@ -5,9 +5,12 @@ api-version: "1.19"
 description: "${description}"
 author: "BillyGalbreath"
 depend:
-  - guithium
+  - Guithium
 
 commands:
+  anchors:
+    description: Opens an anchors example
+    permission: guithium.command.anchors
   calculator:
     description: Opens a calculator GUI
     permission: guithium.command.calculator

@@ -50,14 +50,14 @@ public class StatsHud extends Screen {
                 .setUV(Vec4.of(0, 14 / 128F, 100 / 128F, 28 / 128F))
                 .build(),
             Image.builder("test:stats_heart_bg")
-                .setPos(2, 11)
-                .setSize(12, 12)
+                .setPos(3.5F, 12.5F)
+                .setSize(9, 9)
                 .setTexture(ICONS)
-                .setUV(Vec4.of(34 / 256F, 0, 43 / 256F, 9 / 256F))
+                .setUV(Vec4.of(16 / 256F, 0, 25 / 256F, 9 / 256F))
                 .build(),
             Image.builder("test:stats_heart_fg")
-                .setPos(2, 11)
-                .setSize(12, 12)
+                .setPos(3.5F, 12.5F)
+                .setSize(9, 9)
                 .setTexture(ICONS)
                 .setUV(Vec4.of(52 / 256F, 0, 61 / 256F, 9 / 256F))
                 .build(),

@@ -1,5 +1,6 @@
 package net.pl3x.guithium.test.gui;
 
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.pl3x.guithium.api.Key;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Button;
@@ -95,7 +96,8 @@ public class Calculator extends Screen {
         return button(name, text, x, y, (screen, button, player) -> {
             // add this button's text label to the equation in the display
             String value = this.display.getValue() == null ? "" : this.display.getValue();
-            this.display.setValue(value + button.getLabel());
+            String buttonLabel = button.getLabel() == null ? "" : PlainTextComponentSerializer.plainText().serialize(button.getLabel());
+            this.display.setValue(value + buttonLabel);
             this.display.send(player);
         });
     }

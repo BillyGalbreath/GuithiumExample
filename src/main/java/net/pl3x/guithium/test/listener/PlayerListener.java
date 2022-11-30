@@ -3,7 +3,7 @@ package net.pl3x.guithium.test.listener;
 import net.pl3x.guithium.api.Guithium;
 import net.pl3x.guithium.api.action.ActionHandler;
 import net.pl3x.guithium.api.action.ActionListener;
-import net.pl3x.guithium.api.action.player.PlayerJoinedAction;
+import net.pl3x.guithium.api.action.actions.PlayerJoinedAction;
 import net.pl3x.guithium.api.player.WrappedPlayer;
 import net.pl3x.guithium.test.GuithiumExample;
 import net.pl3x.guithium.test.gui.CoordsHud;

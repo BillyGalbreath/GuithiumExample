@@ -18,6 +18,7 @@ import net.pl3x.guithium.api.gui.element.Textbox;
 import net.pl3x.guithium.test.GuithiumExample;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class SampleScreen extends Screen {
     public SampleScreen() {
@@ -60,22 +61,7 @@ public class SampleScreen extends Screen {
                 .setInnerColor(0xFF6699CC)
                 .setOuterColor(0x0)
                 .build(),
-            /*Image.builder("test:hayley")
-                .setPos(55, 165)
-                .setAnchor(0.5F, 0)
-                .setOffset(0.5F, 0.5F)
-                .setSize(60, 75)
-                .setScale(1.2F)
-                .setTexture(GuithiumExample.HAYLEY)
-                .build(),*/
-            Image.builder("test:banana")
-                .setPos(55, 165)
-                .setAnchor(0.5F, 0)
-                .setOffset(0.5F, 0.5F)
-                .setSize(75, 75)
-                .setScale(1.2F)
-                .setTexture(GuithiumExample.BANANA)
-                .build(),
+            getHayleyOrBanana(),
             Checkbox.builder("test:checkbox1")
                 .setLabel("Checkbox 1")
                 .setPos(-105, 45)
@@ -180,5 +166,27 @@ public class SampleScreen extends Screen {
                 })
                 .build()
         ));
+    }
+
+    private Image getHayleyOrBanana() {
+        if (ThreadLocalRandom.current().nextBoolean()) {
+            return Image.builder("test:hayley")
+                .setPos(55, 165)
+                .setAnchor(0.5F, 0)
+                .setOffset(0.5F, 0.5F)
+                .setSize(60, 75)
+                .setScale(1.2F)
+                .setTexture(GuithiumExample.HAYLEY)
+                .build();
+        } else {
+            return Image.builder("test:banana")
+                .setPos(55, 165)
+                .setAnchor(0.5F, 0)
+                .setOffset(0.5F, 0.5F)
+                .setSize(75, 75)
+                .setScale(1.2F)
+                .setTexture(GuithiumExample.BANANA)
+                .build();
+        }
     }
 }

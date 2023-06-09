@@ -2,7 +2,6 @@ plugins {
     `java-library`
     id("eclipse")
     id("idea")
-    id("xyz.jpenilla.run-paper") version "2.0.0"
 }
 
 group = "net.pl3x.guithium.test"
@@ -34,8 +33,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.19.4-R0.1-SNAPSHOT")
-    compileOnly("net.pl3x.guithium:guithium-api:0.0.3-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.20-R0.1-SNAPSHOT")
+    compileOnly("net.pl3x.guithium:guithium-api:0.0.4-SNAPSHOT")
 }
 
 tasks {
@@ -53,8 +52,5 @@ tasks {
                 "description" to project.description
             )
         }
-    }
-    runServer {
-        minecraftVersion("1.19.3")
     }
 }

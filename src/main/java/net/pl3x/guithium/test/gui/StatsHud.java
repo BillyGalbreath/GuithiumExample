@@ -1,5 +1,7 @@
 package net.pl3x.guithium.test.gui;
 
+import java.text.DecimalFormat;
+import java.util.List;
 import net.kyori.adventure.text.Component;
 import net.pl3x.guithium.api.Key;
 import net.pl3x.guithium.api.gui.Screen;
@@ -11,9 +13,6 @@ import net.pl3x.guithium.api.gui.texture.Texture;
 import net.pl3x.guithium.api.player.WrappedPlayer;
 import org.bukkit.entity.Player;
 
-import java.text.DecimalFormat;
-import java.util.List;
-
 public class StatsHud extends Screen {
     public static final Texture ICONS = Texture.of("test:icons_tex", "minecraft:textures/gui/icons.png");
     public static final Texture HUD = Texture.of("test:stats_hud", "https://i.imgur.com/FzJC3zA.png");
@@ -21,7 +20,6 @@ public class StatsHud extends Screen {
     private final WrappedPlayer player;
 
     private final Text healthText;
-    private final Image healthMask;
     private final Gradient healthColor;
 
     private final DecimalFormat df = new DecimalFormat("0.#");
@@ -32,39 +30,39 @@ public class StatsHud extends Screen {
         this.player = player;
 
         addElements(List.of(
-            Image.builder("test:stats_hud")
-                .setPos(15, 10)
-                .setSize(100, 14)
-                .setTexture(HUD)
-                .setUV(Vec4.of(0, 0, 100 / 128F, 14 / 128F))
-                .build(),
-            this.healthColor = Gradient.builder("test:stats_heart_color")
-                .setPos(18, 13)
-                .setSize(94, 8)
-                .setColor(0xFFFF0000)
-                .build(),
-            this.healthMask = Image.builder("test:stats_hud_mask")
-                .setPos(15, 10)
-                .setSize(100, 14)
-                .setTexture(HUD)
-                .setUV(Vec4.of(0, 14 / 128F, 100 / 128F, 28 / 128F))
-                .build(),
-            Image.builder("test:stats_heart_bg")
-                .setPos(3.5F, 12.5F)
-                .setSize(9, 9)
-                .setTexture(ICONS)
-                .setUV(Vec4.of(16 / 256F, 0, 25 / 256F, 9 / 256F))
-                .build(),
-            Image.builder("test:stats_heart_fg")
-                .setPos(3.5F, 12.5F)
-                .setSize(9, 9)
-                .setTexture(ICONS)
-                .setUV(Vec4.of(52 / 256F, 0, 61 / 256F, 9 / 256F))
-                .build(),
-            this.healthText = Text.builder("test:stat_health")
-                .setPos(21, 15)
-                .setScale(0.5F)
-                .build()
+                Image.builder("test:stats_hud")
+                        .setPos(15, 10)
+                        .setSize(100, 14)
+                        .setTexture(HUD)
+                        .setUV(Vec4.of(0, 0, 100 / 128F, 14 / 128F))
+                        .build(),
+                this.healthColor = Gradient.builder("test:stats_heart_color")
+                        .setPos(18, 13)
+                        .setSize(94, 8)
+                        .setColor(0xFFFF0000)
+                        .build(),
+                Image.builder("test:stats_hud_mask")
+                        .setPos(15, 10)
+                        .setSize(100, 14)
+                        .setTexture(HUD)
+                        .setUV(Vec4.of(0, 14 / 128F, 100 / 128F, 28 / 128F))
+                        .build(),
+                Image.builder("test:stats_heart_bg")
+                        .setPos(3.5F, 12.5F)
+                        .setSize(9, 9)
+                        .setTexture(ICONS)
+                        .setUV(Vec4.of(16 / 256F, 0, 25 / 256F, 9 / 256F))
+                        .build(),
+                Image.builder("test:stats_heart_fg")
+                        .setPos(3.5F, 12.5F)
+                        .setSize(9, 9)
+                        .setTexture(ICONS)
+                        .setUV(Vec4.of(52 / 256F, 0, 61 / 256F, 9 / 256F))
+                        .build(),
+                this.healthText = Text.builder("test:stat_health")
+                        .setPos(21, 15)
+                        .setScale(0.5F)
+                        .build()
         ));
 
         update();

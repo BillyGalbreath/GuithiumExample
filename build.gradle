@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group = 'net.pl3x.guithium.test'
+version = '1.1'
+description = 'Guithium Example Plugin'
+
+repositories {
+    mavenLocal()
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+    maven { url = 'https://repo.pl3x.net/public/' }
+}
+
+dependencies {
+    compileOnly 'io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT'
+    compileOnly 'net.pl3x.guithium:guithium-api:0.1.0-SNAPSHOT'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.release.set(17)
+}
+
+processResources {
+    filteringCharset = 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand(
+                'name': rootProject.name,
+                'group': project.group,
+                'version': project.version,
+                'description': project.description
+        )
+    }
+}

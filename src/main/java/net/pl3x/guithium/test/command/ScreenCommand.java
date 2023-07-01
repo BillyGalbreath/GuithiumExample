@@ -1,5 +1,8 @@
 package net.pl3x.guithium.test.command;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
 import net.pl3x.guithium.api.Guithium;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.player.WrappedPlayer;
@@ -12,10 +15,6 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
 
 public class ScreenCommand implements TabExecutor {
     @Override

@@ -1,9 +1,12 @@
 package net.pl3x.guithium.test.listener;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import net.pl3x.guithium.api.Guithium;
 import net.pl3x.guithium.api.action.ActionHandler;
 import net.pl3x.guithium.api.action.ActionListener;
-import net.pl3x.guithium.api.action.actions.PlayerJoinedAction;
+import net.pl3x.guithium.api.action.actions.player.PlayerJoinedAction;
 import net.pl3x.guithium.api.player.WrappedPlayer;
 import net.pl3x.guithium.test.GuithiumExample;
 import net.pl3x.guithium.test.gui.CoordsHud;
@@ -18,10 +21,6 @@ import org.bukkit.event.entity.EntityEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 public class PlayerListener implements ActionListener, Listener {
     private final GuithiumExample plugin;

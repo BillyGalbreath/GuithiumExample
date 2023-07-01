@@ -1,14 +1,13 @@
 package net.pl3x.guithium.test.gui;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.pl3x.guithium.api.Key;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Button;
 import net.pl3x.guithium.api.gui.element.Textbox;
-
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 
 public class Calculator extends Screen {
     private static final ScriptEngineManager SEM = new ScriptEngineManager();
@@ -37,15 +36,15 @@ public class Calculator extends Screen {
 
         // the display output
         this.display = Textbox.builder("calc:display")
-            .setPos(col0, row0)
-            .setAnchor(0.5F, 0.5F)
-            .setSize(86, 20)
-            .setBordered(true)
-            .setCanLoseFocus(false)
-            .setMaxLength(32)
-            .setEditable(false)
-            .setTextColorUneditable(0xFFE0E0E0)
-            .build();
+                .setPos(col0, row0)
+                .setAnchor(0.5F, 0.5F)
+                .setSize(86, 20)
+                .setBordered(true)
+                .setCanLoseFocus(false)
+                .setMaxLength(32)
+                .setEditable(false)
+                .setTextColorUneditable(0xFFE0E0E0)
+                .build();
         addElement(this.display);
 
         // add all the rows of buttons
@@ -105,11 +104,11 @@ public class Calculator extends Screen {
     private Button button(String name, String text, int x, int y, Button.OnClick onClick) {
         // create a new button with specified properties
         return Button.builder("calc:btn_" + name)
-            .setPos(x, y)
-            .setAnchor(0.5F, 0.5F)
-            .setSize(20, 20)
-            .setLabel(text)
-            .onClick(onClick)
-            .build();
+                .setPos(x, y)
+                .setAnchor(0.5F, 0.5F)
+                .setSize(20, 20)
+                .setLabel(text)
+                .onClick(onClick)
+                .build();
     }
 }

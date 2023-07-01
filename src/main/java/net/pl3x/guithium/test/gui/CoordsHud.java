@@ -18,8 +18,8 @@ public class CoordsHud extends Screen {
 
         // create and add text element to the screen
         this.text = Text.builder("test:coords")
-            .setPos(3, 1)
-            .build();
+                .setPos(3, 1)
+                .build();
         addElement(this.text);
 
         // use player's current location for initial value

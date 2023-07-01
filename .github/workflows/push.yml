@@ -1,0 +1,24 @@
+name: Check latest push
+on: [ push, pull_request ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, windows-2022]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: gradle/wrapper-validation-action@v1
+      - uses: actions/setup-java@v3.6.0
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Build
+        run: ./gradlew build --stacktrace
+      - name: Upload a build artifact
+        if: ${{ runner.os != 'Windows' }}
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          name: guithium-example-${{ github.ref_name }}
+          path: build/libs/*.jar

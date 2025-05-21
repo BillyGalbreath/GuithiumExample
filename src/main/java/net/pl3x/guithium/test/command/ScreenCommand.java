@@ -9,6 +9,7 @@ import net.pl3x.guithium.api.player.WrappedPlayer;
 import net.pl3x.guithium.test.gui.AnchorsScreen;
 import net.pl3x.guithium.test.gui.Calculator;
 import net.pl3x.guithium.test.gui.SampleScreen;
+import net.pl3x.guithium.test.gui.Test;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -18,12 +19,12 @@ import org.jetbrains.annotations.Nullable;
 
 public class ScreenCommand implements TabExecutor {
     @Override
-    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         return Collections.emptyList();
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         // only let players use this command
         if (!(sender instanceof Player bukkitPlayer)) {
             sender.sendMessage("Player only command.");
@@ -45,7 +46,8 @@ public class ScreenCommand implements TabExecutor {
         } else if (cmd.equals("anchors")) {
             screen = new AnchorsScreen();
         } else {
-            screen = new SampleScreen();
+            //screen = new SampleScreen();
+            screen = new Test();
         }
 
         // open the screen on the player's client

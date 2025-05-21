@@ -4,22 +4,23 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
-import net.pl3x.guithium.api.Key;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Button;
+import net.pl3x.guithium.api.gui.element.Gradient;
 import net.pl3x.guithium.api.gui.element.Textbox;
+import net.pl3x.guithium.api.key.Key;
 
 public class Calculator extends Screen {
-    private static final ScriptEngineManager SEM = new ScriptEngineManager();
+    /*private static final ScriptEngineManager SEM = new ScriptEngineManager();
     private static final ScriptEngine SE = SEM.getEngineByName("JavaScript");
 
-    private final Textbox display;
+    private final Textbox display;*/
 
     public Calculator() {
         super(Key.of("guithium:calc"));
 
         // add one of the provided default backgrounds
-        this.addElement(Screen.GRADIENT_BACKGROUND);
+        /*this.addElement(Gradient.GRADIENT);
 
         // prepare button locations
         int row0 = -77;
@@ -35,7 +36,7 @@ public class Calculator extends Screen {
         int col3 = 23;
 
         // the display output
-        this.display = Textbox.builder("calc:display")
+        this.display = new Textbox("calc:display")
                 .setPos(col0, row0)
                 .setAnchor(0.5F, 0.5F)
                 .setSize(86, 20)
@@ -43,8 +44,7 @@ public class Calculator extends Screen {
                 .setCanLoseFocus(false)
                 .setMaxLength(32)
                 .setEditable(false)
-                .setTextColorUneditable(0xFFE0E0E0)
-                .build();
+                .setUneditableTextColor(0xFFE0E0E0);
         addElement(this.display);
 
         // add all the rows of buttons
@@ -103,12 +103,11 @@ public class Calculator extends Screen {
 
     private Button button(String name, String text, int x, int y, Button.OnClick onClick) {
         // create a new button with specified properties
-        return Button.builder("calc:btn_" + name)
+        return new Button("calc:btn_" + name)
                 .setPos(x, y)
                 .setAnchor(0.5F, 0.5F)
                 .setSize(20, 20)
                 .setLabel(text)
-                .onClick(onClick)
-                .build();
+                .onClick(onClick);*/
     }
 }

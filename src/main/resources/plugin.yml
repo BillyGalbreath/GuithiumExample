@@ -1,8 +1,8 @@
-name: "${name}"
-main: "${group}.${name}"
+name: "GuithiumExample"
+main: "net.pl3x.guithium.test.GuithiumExample"
 version: "${version}"
-api-version: "1.19"
-description: "${description}"
+api-version: "1.21.5"
+description: "Guithium Example Plugin"
 author: "BillyGalbreath"
 depend:
   - Guithium

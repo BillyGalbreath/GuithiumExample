@@ -9,12 +9,12 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public class CoordsHud extends Screen {
-    //private final WrappedPlayer player;
-    //private final Text text;
+    private final WrappedPlayer player;
+    private final Text text;
 
     public CoordsHud(WrappedPlayer player) {
         super(Key.of("test:coords_hud"), true);
-        /*this.player = player;
+        this.player = player;
 
         // create and add text element to the screen
         this.text = new Text("test:coords")
@@ -31,6 +31,6 @@ public class CoordsHud extends Screen {
         this.text.setText(Component.text(coords));
 
         // send just the updated text element to the player's client
-        this.text.send(this.player);*/
+        this.text.send(this.player);
     }
 }

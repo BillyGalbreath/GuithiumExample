@@ -71,7 +71,7 @@ public class PlayerListener implements ActionListener, Listener {
         CoordsHud hud = this.coordsHuds.get(player.getUUID());
 
         // up the coords on the hud
-        //hud.update(event.getTo());
+        hud.update(event.getTo());
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -90,15 +90,12 @@ public class PlayerListener implements ActionListener, Listener {
         }
 
         WrappedPlayer player = Guithium.api().getPlayerManager().get(event.getEntity());
-        if (player == null) {
-            return;
-        }
 
         StatsHud statsHud = this.statsHuds.get(player.getUUID());
         if (statsHud == null) {
             return;
         }
 
-        //Bukkit.getScheduler().runTaskLater(this.plugin, statsHud::update, 1L);
+        Bukkit.getScheduler().runTaskLater(this.plugin, statsHud::update, 1L);
     }
 }

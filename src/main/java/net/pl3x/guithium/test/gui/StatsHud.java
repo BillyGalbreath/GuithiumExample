@@ -14,7 +14,7 @@ import net.pl3x.guithium.api.player.WrappedPlayer;
 import org.bukkit.entity.Player;
 
 public class StatsHud extends Screen {
-    /*public static final Texture ICONS = Texture.of("test:icons_tex", "minecraft:textures/gui/icons.png");
+    public static final Texture ICONS = Texture.of("test:icons_tex", "minecraft:textures/gui/icons.png");
     public static final Texture HUD = Texture.of("test:stats_hud", "https://i.imgur.com/FzJC3zA.png");
 
     private final WrappedPlayer player;
@@ -22,12 +22,12 @@ public class StatsHud extends Screen {
     private final Text healthText;
     private final Gradient healthColor;
 
-    private final DecimalFormat df = new DecimalFormat("0.#");*/
+    private final DecimalFormat df = new DecimalFormat("0.#");
 
     public StatsHud(WrappedPlayer player) {
         super(Key.of("test:stats_hud"), true);
 
-        /*this.player = player;
+        this.player = player;
 
         addElements(List.of(
                 new Image("test:stats_hud")
@@ -84,6 +84,6 @@ public class StatsHud extends Screen {
 
     @SuppressWarnings("deprecation")
     private double getMaxHealth(Player player) {
-        return player.getMaxHealth();*/
+        return player.getMaxHealth();
     }
 }

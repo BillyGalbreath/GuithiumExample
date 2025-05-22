@@ -11,16 +11,16 @@ import net.pl3x.guithium.api.gui.element.Textbox;
 import net.pl3x.guithium.api.key.Key;
 
 public class Calculator extends Screen {
-    /*private static final ScriptEngineManager SEM = new ScriptEngineManager();
+    private static final ScriptEngineManager SEM = new ScriptEngineManager();
     private static final ScriptEngine SE = SEM.getEngineByName("JavaScript");
 
-    private final Textbox display;*/
+    private final Textbox display;
 
     public Calculator() {
         super(Key.of("guithium:calc"));
 
         // add one of the provided default backgrounds
-        /*this.addElement(Gradient.GRADIENT);
+        this.addElement(Gradient.GRADIENT);
 
         // prepare button locations
         int row0 = -77;
@@ -108,6 +108,6 @@ public class Calculator extends Screen {
                 .setAnchor(0.5F, 0.5F)
                 .setSize(20, 20)
                 .setLabel(text)
-                .onClick(onClick);*/
+                .onClick(onClick);
     }
 }

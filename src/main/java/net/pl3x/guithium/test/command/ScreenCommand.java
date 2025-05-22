@@ -9,7 +9,6 @@ import net.pl3x.guithium.api.player.WrappedPlayer;
 import net.pl3x.guithium.test.gui.AnchorsScreen;
 import net.pl3x.guithium.test.gui.Calculator;
 import net.pl3x.guithium.test.gui.SampleScreen;
-import net.pl3x.guithium.test.gui.Test;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -46,8 +45,7 @@ public class ScreenCommand implements TabExecutor {
         } else if (cmd.equals("anchors")) {
             screen = new AnchorsScreen();
         } else {
-            //screen = new SampleScreen();
-            screen = new Test();
+            screen = new SampleScreen();
         }
 
         // open the screen on the player's client

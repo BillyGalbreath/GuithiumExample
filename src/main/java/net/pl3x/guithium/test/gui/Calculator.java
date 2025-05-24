@@ -6,6 +6,7 @@ import javax.script.ScriptException;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.element.Button;
+import net.pl3x.guithium.api.gui.element.ClickableElement;
 import net.pl3x.guithium.api.gui.element.Gradient;
 import net.pl3x.guithium.api.gui.element.Textbox;
 import net.pl3x.guithium.api.key.Key;
@@ -101,7 +102,7 @@ public class Calculator extends Screen {
         });
     }
 
-    private Button button(String name, String text, int x, int y, Button.OnClick onClick) {
+    private Button button(String name, String text, int x, int y, ClickableElement.OnClick<Button> onClick) {
         // create a new button with specified properties
         return new Button("calc:btn_" + name)
                 .setPos(x, y)

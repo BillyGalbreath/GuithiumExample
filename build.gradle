@@ -9,13 +9,14 @@ configurations.configureEach {
 }
 
 repositories {
+    mavenLocal()
     maven { url = 'https://repo.papermc.io/repository/maven-public/' }
     maven { url = 'https://repo.pl3x.net/public/' }
 }
 
 dependencies {
     compileOnly 'io.papermc.paper:paper-api:1.21.5-R0.1-SNAPSHOT'
-    compileOnly('net.pl3x.guithium:guithium-api:0.0.1').setChanging(true)
+    compileOnly('net.pl3x.guithium:guithium-api:0.1.0-SNAPSHOT').setChanging(true)
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)

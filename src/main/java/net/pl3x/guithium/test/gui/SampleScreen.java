@@ -72,7 +72,7 @@ public class SampleScreen extends Screen {
                         .setPos(-105, 45)
                         .setAnchor(0.5F, 0)
                         .setSize(100, 20)
-                        .onToggled((screen, checkbox, player, checked) -> {
+                        .onChange((screen, checkbox, player, checked) -> {
                             // this code will fire when the checkbox is toggled
                             System.out.println("Checkbox (" + checkbox.getKey() + ") toggled: " + checked);
                         })
@@ -82,8 +82,8 @@ public class SampleScreen extends Screen {
                         .setPos(-105, 70)
                         .setAnchor(0.5F, 0)
                         .setSize(100, 20)
-                        .setSelected(true)
-                        .onToggled((screen, checkbox, player, checked) -> {
+                        .setValue(true)
+                        .onChange((screen, checkbox, player, checked) -> {
                             // this code will fire when the checkbox is toggled
                             System.out.println("Checkbox (" + checkbox.getKey() + ") toggled: " + checked);
                         })
@@ -93,8 +93,8 @@ public class SampleScreen extends Screen {
                         .setPos(-105, 95)
                         .setAnchor(0.5F, 0)
                         .setSize(100, 20)
-                        .setSelected(true)
-                        .onToggled((screen, checkbox, player, checked) -> {
+                        .setValue(true)
+                        .onChange((screen, checkbox, player, checked) -> {
                             // this code will fire when the checkbox is toggled
                             System.out.println("Checkbox (" + checkbox.getKey() + ") toggled: " + checked);
                         }),
@@ -136,7 +136,7 @@ public class SampleScreen extends Screen {
                         .setPos(5, 45)
                         .setAnchor(0.5F, 0)
                         .setSize(100, 20)
-                        .onToggled((screen, radio, player, checked) -> {
+                        .onChange((screen, radio, player, checked) -> {
                             // this code will fire when the radio button is toggled
                             System.out.println("Radio (" + radio.getKey() + ") toggled: " + checked);
                         }),
@@ -146,8 +146,8 @@ public class SampleScreen extends Screen {
                         .setPos(5, 70)
                         .setAnchor(0.5F, 0)
                         .setSize(100, 20)
-                        .setSelected(true)
-                        .onToggled((screen, radio, player, checked) -> {
+                        .setValue(true)
+                        .onChange((screen, radio, player, checked) -> {
                             // this code will fire when the radio button is toggled
                             System.out.println("Radio (" + radio.getKey() + ") toggled: " + checked);
                         }),
@@ -157,7 +157,7 @@ public class SampleScreen extends Screen {
                         .setPos(5, 95)
                         .setAnchor(0.5F, 0)
                         .setSize(100, 20)
-                        .onToggled((screen, radio, player, checked) -> {
+                        .onChange((screen, radio, player, checked) -> {
                             // this code will fire when the radio button is toggled
                             System.out.println("Radio (" + radio.getKey() + ") toggled: " + checked);
                         })

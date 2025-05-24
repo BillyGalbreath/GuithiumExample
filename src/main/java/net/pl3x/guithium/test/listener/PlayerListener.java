@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import net.pl3x.guithium.api.Guithium;
-import net.pl3x.guithium.api.action.ActionHandler;
 import net.pl3x.guithium.api.action.ActionListener;
 import net.pl3x.guithium.api.action.actions.player.PlayerJoinedAction;
+import net.pl3x.guithium.api.action.actions.player.screen.element.ElementClickedAction;
+import net.pl3x.guithium.api.action.actions.player.screen.element.ElementToggledAction;
+import net.pl3x.guithium.api.action.actions.player.screen.element.ElementValueChangedAction;
 import net.pl3x.guithium.api.player.WrappedPlayer;
 import net.pl3x.guithium.test.GuithiumExample;
 import net.pl3x.guithium.test.gui.CoordsHud;
@@ -46,6 +48,26 @@ public class PlayerListener implements ActionListener, Listener {
         CoordsHud hud = new CoordsHud(player);
         hud.open(player);
         this.coordsHuds.put(player.getUUID(), hud);
+    }
+
+    @ActionHandler
+    public void onElementClicked(ElementClickedAction<?> action) {
+        this.plugin.getLogger().warning("Element Clicked:" + action.getElement().getClass().getSimpleName());
+        this.plugin.getLogger().warning("      - " + action.getElement().getClass().getSimpleName());
+    }
+
+    @ActionHandler
+    public void onElementToggled(ElementToggledAction<?> action) {
+        this.plugin.getLogger().warning("Element Toggled:");
+        this.plugin.getLogger().warning("      - " + action.getElement().getClass().getSimpleName());
+        this.plugin.getLogger().warning("      - " + action.isSelected());
+    }
+
+    @ActionHandler
+    public void onElementValueChanged(ElementValueChangedAction<?, ?> action) {
+        this.plugin.getLogger().warning("Element Value Changed:");
+        this.plugin.getLogger().warning("      - " + action.getElement().getClass().getSimpleName());
+        this.plugin.getLogger().warning("      - " + action.getValue() + " (" + action.getValue().getClass().getSimpleName() + ")");
     }
 
     // listen to Bukkit events

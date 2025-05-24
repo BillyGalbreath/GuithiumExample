@@ -29,7 +29,7 @@ public class GuithiumExample extends JavaPlugin {
         TextureManager textureManager = Guithium.api().getTextureManager();
         textureManager.add(BANANA);
         textureManager.add(HAYLEY);
-        textureManager.add(StatsHud.HUD);
+        textureManager.add(StatsHud.PROGRESSBAR);
     }
 
     private void registerCommand(String commandName, CommandExecutor executor) {

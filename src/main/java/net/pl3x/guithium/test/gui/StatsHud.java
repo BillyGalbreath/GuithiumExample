@@ -14,8 +14,9 @@ import net.pl3x.guithium.api.player.WrappedPlayer;
 import org.bukkit.entity.Player;
 
 public class StatsHud extends Screen {
-    public static final Texture ICONS = Texture.of("test:icons_tex", "minecraft:textures/gui/icons.png");
-    public static final Texture HUD = Texture.of("test:stats_hud", "https://i.imgur.com/FzJC3zA.png");
+    public static final Texture HEART_CONTAINER = Texture.of("test:icons_tex", "minecraft:textures/gui/sprites/hud/heart/container.png");
+    public static final Texture HEART_FULL = Texture.of("test:icons_tex", "minecraft:textures/gui/sprites/hud/heart/full.png");
+    public static final Texture PROGRESSBAR = Texture.of("test:stats_hud", "https://pl3x.net/progressbar.png");
 
     private final WrappedPlayer player;
 
@@ -33,8 +34,8 @@ public class StatsHud extends Screen {
                 new Image("test:stats_hud")
                         .setPos(15, 10)
                         .setSize(100, 14)
-                        .setTexture(HUD)
-                        .setUV(Vec4.of(0, 0, 100 / 128F, 14 / 128F)),
+                        .setTexture(PROGRESSBAR)
+                        .setUV(Vec4.of(0, 0, 1F, 14 / 28F)),
                 this.healthColor = new Gradient("test:stats_heart_color")
                         .setPos(18, 13)
                         .setSize(94, 8)
@@ -42,20 +43,18 @@ public class StatsHud extends Screen {
                 new Image("test:stats_hud_mask")
                         .setPos(15, 10)
                         .setSize(100, 14)
-                        .setTexture(HUD)
-                        .setUV(Vec4.of(0, 14 / 128F, 100 / 128F, 28 / 128F)),
+                        .setTexture(PROGRESSBAR)
+                        .setUV(Vec4.of(0, 14 / 28F, 1F, 1F)),
                 new Image("test:stats_heart_bg")
                         .setPos(3.5F, 12.5F)
                         .setSize(9, 9)
-                        .setTexture(ICONS)
-                        .setUV(Vec4.of(16 / 256F, 0, 25 / 256F, 9 / 256F)),
+                        .setTexture(HEART_CONTAINER),
                 new Image("test:stats_heart_fg")
                         .setPos(3.5F, 12.5F)
                         .setSize(9, 9)
-                        .setTexture(ICONS)
-                        .setUV(Vec4.of(52 / 256F, 0, 61 / 256F, 9 / 256F)),
+                        .setTexture(HEART_FULL),
                 this.healthText = new Text("test:stat_health")
-                        .setPos(21, 15)
+                        .setPos(15, 14)
                         .setScale(0.5F)
         ));
 

@@ -5,6 +5,7 @@ import net.pl3x.guithium.api.gui.Screen;
 import net.pl3x.guithium.api.gui.Vec2;
 import net.pl3x.guithium.api.gui.element.Element;
 import net.pl3x.guithium.api.gui.element.Gradient;
+import net.pl3x.guithium.api.gui.element.Image;
 import net.pl3x.guithium.api.gui.element.Line;
 import net.pl3x.guithium.api.gui.element.Slider;
 import net.pl3x.guithium.api.key.Key;
@@ -22,7 +23,7 @@ public class AnchorsScreen extends Screen {
         super(Key.of("test:anchors_screen"));
 
         // add one of the provided default backgrounds
-        /*addElement(Image.TILED_DIRT_BACKGROUND);*/
+        addElement(Image.TILED_DIRT_BACKGROUND);
 
         // add our elements to the screen
         addElements(createElements());
@@ -73,7 +74,6 @@ public class AnchorsScreen extends Screen {
                         }),
                 new Slider("test:slider_offset_y").setLabel("OffsetY {value}").setPos(0, 135).setAnchor(0.5F, 0).setOffset(0.5F, 0).setSize(150, 20).setValue(0.5D).setMin(0D).setMax(1D).setDecimalFormat("0.0#")
                         .onChange((screen, slider, player, value) -> {
-                            System.out.println("Value: " + value);
                             this.gradient.setOffset(this.gradient.getOffset().getX(), value.floatValue());
                             updateLines(player);
                         })

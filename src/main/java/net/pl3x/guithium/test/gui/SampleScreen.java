@@ -1,6 +1,7 @@
 package net.pl3x.guithium.test.gui;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -10,12 +11,14 @@ import net.pl3x.guithium.api.gui.element.Button;
 import net.pl3x.guithium.api.gui.element.Checkbox;
 import net.pl3x.guithium.api.gui.element.Circle;
 import net.pl3x.guithium.api.gui.element.Gradient;
+import net.pl3x.guithium.api.gui.element.Image;
 import net.pl3x.guithium.api.gui.element.Line;
 import net.pl3x.guithium.api.gui.element.Radio;
 import net.pl3x.guithium.api.gui.element.Slider;
 import net.pl3x.guithium.api.gui.element.Text;
 import net.pl3x.guithium.api.gui.element.Textbox;
 import net.pl3x.guithium.api.key.Key;
+import net.pl3x.guithium.test.GuithiumExample;
 
 public class SampleScreen extends Screen {
     public SampleScreen() {
@@ -54,7 +57,7 @@ public class SampleScreen extends Screen {
                         .setResolution(5)
                         .setInnerColor(0xFF6699CC)
                         .setOuterColor(0x0),
-                /*(switch (ThreadLocalRandom.current().nextBoolean() ? 1 : 0) {
+                (switch (ThreadLocalRandom.current().nextBoolean() ? 1 : 0) {
                     case 1 -> new Image("test:hayley").setTexture(GuithiumExample.HAYLEY);
                     case 0 -> new Image("test:banana").setTexture(GuithiumExample.BANANA);
                     default -> throw new IllegalStateException();
@@ -63,7 +66,7 @@ public class SampleScreen extends Screen {
                         .setAnchor(0.5F, 0)
                         .setOffset(0.5F, 0.5F)
                         .setSize(60, 75)
-                        .setScale(1.2F),*/
+                        .setScale(1.2F),
                 new Checkbox("test:checkbox1")
                         .setLabel("Checkbox 1")
                         .setPos(-105, 45)

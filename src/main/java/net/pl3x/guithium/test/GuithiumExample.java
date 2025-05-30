@@ -1,6 +1,7 @@
 package net.pl3x.guithium.test;
 
 import net.pl3x.guithium.api.Guithium;
+import net.pl3x.guithium.api.gui.hud.Render;
 import net.pl3x.guithium.api.gui.texture.Texture;
 import net.pl3x.guithium.api.gui.texture.TextureManager;
 import net.pl3x.guithium.test.command.ScreenCommand;
@@ -24,6 +25,11 @@ public class GuithiumExample extends JavaPlugin {
         PlayerListener playerListener = new PlayerListener(this);
         Guithium.api().getActionRegistry().register(playerListener);
         getServer().getPluginManager().registerEvents(playerListener, this);
+
+        Guithium.api().getHudManager().getGlobalSettings()
+                .set(Render.PLAYER_HEALTH, false)
+                .set(Render.SLEEP_OVERLAY, false)
+                .set(Render.CAMERA_OVERLAYS, false);
 
         // preload any textures to be used
         TextureManager textureManager = Guithium.api().getTextureManager();

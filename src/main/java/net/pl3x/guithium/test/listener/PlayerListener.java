@@ -1,5 +1,6 @@
 package net.pl3x.guithium.test.listener;
 
+import com.destroystokyo.paper.event.player.PlayerPostRespawnEvent;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -14,12 +15,12 @@ import net.pl3x.guithium.test.GuithiumExample;
 import net.pl3x.guithium.test.gui.CoordsHud;
 import net.pl3x.guithium.test.gui.StatsHud;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -98,22 +99,25 @@ public class PlayerListener implements ActionListener, Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onHealthChange(EntityDamageEvent event) {
-        handleStatsChange(event);
+        handleStatsChange(event.getEntity());
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onHealthChange(EntityRegainHealthEvent event) {
-        handleStatsChange(event);
+        handleStatsChange(event.getEntity());
     }
 
-    private void handleStatsChange(EntityEvent event) {
-        if (event.getEntityType() != EntityType.PLAYER) {
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onHealthChange(PlayerPostRespawnEvent event) {
+        handleStatsChange(event.getPlayer());
+    }
+
+    private void handleStatsChange(Entity entity) {
+        if (!(entity instanceof Player)) {
             return;
         }
 
-        WrappedPlayer player = Guithium.api().getPlayerManager().get(event.getEntity());
-
-        StatsHud statsHud = this.statsHuds.get(player.getUUID());
+        StatsHud statsHud = this.statsHuds.get(entity.getUniqueId());
         if (statsHud == null) {
             return;
         }
